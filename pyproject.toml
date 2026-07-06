@@ -1,0 +1,14 @@
+[project]
+name = "rag-ingestion-pipel-ine"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "langchain-text-splitters>=1.1.2",
+    "pandas>=3.0.3",
+    "pydantic>=2.13.4",
+    "pypdf>=6.14.2",
+    "tiktoken>=0.13.0",
+    "tqdm>=4.68.3",
+]

@@ -1,0 +1,24 @@
+Artificial Intelligence is transforming software engineering.
+
+Large Language Models can retrieve information from indexed documents.
+
+Chunking strategy significantly impacts retrieval quality.
+
+1. CharacterTextSplitter.from_tiktoken_encoder()
+- split by **characters (paragraphs, sentences)**
+- but measures chunk size using tiktoken
+- Chunks might be slightly larger than the target size
+
+2. RecursiveCharacterTextSplitter.from_tiktoken_encoder()
+- Splits recursively until each chunk is **stricly below** the token limit
+- best when you need **hard** token constraints
+
+3. TokenTextSplitter
+- splits **directly by tokens**
+- guarantee each chunk is **smaller** than chunk_size
+
+Pre-chunking is the most common method. It processes documents asynchronously by breaking them into smaller pieces before embedding and storing them in the vector database
+⇒ fast retrieval at query time since all chunks are pre-computed and indexed.
+
+Post-chunking takes a different approach by embedding entire documents first, then performing chunking at query time only on the documents that are actually retrieved.
+The chunked results can be cached, so the system becomes faster over time as frequently accessed documents build up cached chunks ⇒ avoids chunking documents that may never be queried while allowing for more dynamic, context-aware chunking strategies based on the specific query.
