@@ -1,28 +1,44 @@
-from uuid import uuid4
+from uuid import NAMESPACE_URL, uuid5
 from app.models import Chunk
 import json
 
 def create_chunk_records(
-    document_id: str, source: str, chunks: list[str]
+    document_id: str,
+    source: str,
+    chunks: list[str],
+    tenant_id: str,
+    acl_roles: list[str] | None = None,
+    extra_metadata: dict | None = None,
 ):
     """
     Create a Chunk record with a unique chunk_id.
 
     Args:
         document_id (str): The ID of the document this chunk belongs to.
-        text (str): The text content of the chunk.
-        metadata (dict): Additional metadata for the chunk.
+        source (str): Path/identifier of the source document.
+        chunks (list[str]): The chunk texts.
+        tenant_id (str): Owning tenant — enforced at every retrieval layer.
+        acl_roles (list[str] | None): Roles allowed to see these chunks.
+            Defaults to ["*"] (public within the tenant) if not given.
+        extra_metadata (dict | None): Any additional filterable metadata
+            (e.g. doc_type, department) to merge into each chunk's metadata.
 
     Returns:
-        Chunk: A new Chunk record with a unique chunk_id.
+        list[Chunk]: New Chunk records with unique chunk_ids and access metadata.
     """
     records = []
     for idx, chunk_text in enumerate(chunks):
-        chunk_id = str(uuid4())
+        # Deterministic id (not random uuid4): rebuilding the index from the
+        # same source produces the same chunk_ids, which a labeled eval set
+        # depends on to stay valid across rebuilds.
+        chunk_id = str(uuid5(NAMESPACE_URL, f"{document_id}:{idx}"))
         metadata = {
             "source": source,
             "chunk_number": idx + 1,
             "chunk_length": len(chunk_text),
+            "tenant_id": tenant_id,
+            "acl_roles": acl_roles or ["*"],
+            **(extra_metadata or {}),
         }
         chunk_record = Chunk(
             chunk_id=chunk_id,

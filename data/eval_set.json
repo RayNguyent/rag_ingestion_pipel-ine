@@ -1,0 +1,39 @@
+[
+  {
+    "query": "how does chunking strategy affect retrieval quality",
+    "tenant_id": "acme",
+    "user_id": "eng-user-1",
+    "roles": ["*"],
+    "relevant_chunk_ids": [
+      "35cdc727-1597-5ed2-bed2-30069f631e71",
+      "e63070da-8bd2-505e-a4e6-7a3294c2bc52"
+    ]
+  },
+  {
+    "query": "token text splitter guarantees smaller chunks",
+    "tenant_id": "acme",
+    "user_id": "eng-user-1",
+    "roles": ["*"],
+    "relevant_chunk_ids": [
+      "e125bb4d-3157-510c-868c-160870c4fcaa"
+    ]
+  },
+  {
+    "query": "when are expense reports due each month",
+    "tenant_id": "globex",
+    "user_id": "hr-user-1",
+    "roles": ["employee"],
+    "relevant_chunk_ids": [
+      "eb5ae13c-804a-5390-a1f5-96d441b06b66"
+    ]
+  },
+  {
+    "query": "employee onboarding orientation security training",
+    "tenant_id": "globex",
+    "user_id": "hr-user-1",
+    "roles": ["employee"],
+    "relevant_chunk_ids": [
+      "42163001-8187-5661-88bf-eac7a7291127"
+    ]
+  }
+]

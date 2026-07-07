@@ -1,352 +1,124 @@
 [
   {
-    "chunk_id": "8e0968c7-34ae-4cd9-a07e-7cb6ae817541",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "Artificial Intelligence is transforming software",
+    "chunk_id": "35cdc727-1597-5ed2-bed2-30069f631e71",
+    "document_id": "335ffad6-a1e5-574e-977a-171ca99ec221",
+    "text": "Artificial Intelligence is transforming software engineering.Large Language Models can retrieve information from indexed documents.Chunking strategy significantly impacts retrieval quality.1. CharacterTextSplitter.from_tiktoken_encoder()- split by **characters (paragraphs, sentences)**- but measures",
     "metadata": {
       "source": "data/sample.txt",
       "chunk_number": 1,
-      "chunk_length": 48
+      "chunk_length": 300,
+      "tenant_id": "acme",
+      "acl_roles": [
+        "*"
+      ],
+      "doc_type": "engineering_notes"
     }
   },
   {
-    "chunk_id": "4e676b55-a025-4849-9d81-7efdef87f805",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "software engineering.Large Language Models can",
+    "chunk_id": "7585a05f-6df4-538d-9069-3df47b00c3ff",
+    "document_id": "335ffad6-a1e5-574e-977a-171ca99ec221",
+    "text": "(paragraphs, sentences)**- but measures chunk size using tiktoken- Chunks might be slightly larger than the target size2. RecursiveCharacterTextSplitter.from_tiktoken_encoder()- Splits recursively until each chunk is **stricly below** the token limit- best when you need **hard** token constraints3.",
     "metadata": {
       "source": "data/sample.txt",
       "chunk_number": 2,
-      "chunk_length": 46
+      "chunk_length": 299,
+      "tenant_id": "acme",
+      "acl_roles": [
+        "*"
+      ],
+      "doc_type": "engineering_notes"
     }
   },
   {
-    "chunk_id": "28e64c30-0820-4825-939e-2f715ef44e19",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "can retrieve information from indexed",
+    "chunk_id": "e125bb4d-3157-510c-868c-160870c4fcaa",
+    "document_id": "335ffad6-a1e5-574e-977a-171ca99ec221",
+    "text": "best when you need **hard** token constraints3. TokenTextSplitter- splits **directly by tokens**- guarantee each chunk is **smaller** than chunk_sizePre-chunking is the most common method. It processes documents asynchronously by breaking them into smaller pieces before embedding and storing them",
     "metadata": {
       "source": "data/sample.txt",
       "chunk_number": 3,
-      "chunk_length": 37
+      "chunk_length": 297,
+      "tenant_id": "acme",
+      "acl_roles": [
+        "*"
+      ],
+      "doc_type": "engineering_notes"
     }
   },
   {
-    "chunk_id": "d1e3e5f0-3acd-4712-938e-6932146f0594",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "indexed documents.Chunking strategy significantly",
+    "chunk_id": "e63070da-8bd2-505e-a4e6-7a3294c2bc52",
+    "document_id": "335ffad6-a1e5-574e-977a-171ca99ec221",
+    "text": "smaller pieces before embedding and storing them in the vector database⇒ fast retrieval at query time since all chunks are pre-computed and indexed.Post-chunking takes a different approach by embedding entire documents first, then performing chunking at query time only on the documents that are",
     "metadata": {
       "source": "data/sample.txt",
       "chunk_number": 4,
-      "chunk_length": 49
+      "chunk_length": 295,
+      "tenant_id": "acme",
+      "acl_roles": [
+        "*"
+      ],
+      "doc_type": "engineering_notes"
     }
   },
   {
-    "chunk_id": "6f98dc13-49d0-476e-b648-0375446bc0d2",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "impacts retrieval quality.1.",
+    "chunk_id": "507332f6-8650-536b-861a-b78f55684f0c",
+    "document_id": "335ffad6-a1e5-574e-977a-171ca99ec221",
+    "text": "at query time only on the documents that are actually retrieved.The chunked results can be cached, so the system becomes faster over time as frequently accessed documents build up cached chunks ⇒ avoids chunking documents that may never be queried while allowing for more dynamic, context-aware",
     "metadata": {
       "source": "data/sample.txt",
       "chunk_number": 5,
-      "chunk_length": 28
+      "chunk_length": 294,
+      "tenant_id": "acme",
+      "acl_roles": [
+        "*"
+      ],
+      "doc_type": "engineering_notes"
     }
   },
   {
-    "chunk_id": "6d43cc3d-1f67-41fe-9881-ebe4176b9528",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "CharacterTextSplitter.from_tiktoken_encoder()-",
+    "chunk_id": "671ffcd8-54c6-533b-8108-fa6a35541a20",
+    "document_id": "335ffad6-a1e5-574e-977a-171ca99ec221",
+    "text": "while allowing for more dynamic, context-aware chunking strategies based on the specific query.",
     "metadata": {
       "source": "data/sample.txt",
       "chunk_number": 6,
-      "chunk_length": 46
+      "chunk_length": 95,
+      "tenant_id": "acme",
+      "acl_roles": [
+        "*"
+      ],
+      "doc_type": "engineering_notes"
     }
   },
   {
-    "chunk_id": "debd2f1e-1fb6-4b29-bfb8-cf21c3cb419b",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "split by **characters (paragraphs, sentences)**-",
+    "chunk_id": "42163001-8187-5661-88bf-eac7a7291127",
+    "document_id": "2f4233d5-473e-5792-bbaf-074f6c002911",
+    "text": "Employee onboarding begins with an orientation session covering company policy.All new hires must complete security awareness training within the first week.Expense reports must be submitted through the finance portal by the fifth business day of each month.Remote employees are provided a stipend",
     "metadata": {
-      "source": "data/sample.txt",
-      "chunk_number": 7,
-      "chunk_length": 48
+      "source": "data/tenant_b_handbook.txt",
+      "chunk_number": 1,
+      "chunk_length": 297,
+      "tenant_id": "globex",
+      "acl_roles": [
+        "employee",
+        "manager"
+      ],
+      "doc_type": "hr_handbook"
     }
   },
   {
-    "chunk_id": "c0dc8374-f18d-45af-b684-b54e9bfcd537",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "but measures chunk size using tiktoken- Chunks",
+    "chunk_id": "eb5ae13c-804a-5390-a1f5-96d441b06b66",
+    "document_id": "2f4233d5-473e-5792-bbaf-074f6c002911",
+    "text": "month.Remote employees are provided a stipend for home office equipment.The performance review cycle runs twice per year, in April and October.Confidential HR records are restricted to managers and the People Operations team.Payroll is processed on the last business day of every month.",
     "metadata": {
-      "source": "data/sample.txt",
-      "chunk_number": 8,
-      "chunk_length": 46
-    }
-  },
-  {
-    "chunk_id": "d5671e82-3d37-4c56-a392-c060c15aaf94",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "Chunks might be slightly larger than the target",
-    "metadata": {
-      "source": "data/sample.txt",
-      "chunk_number": 9,
-      "chunk_length": 47
-    }
-  },
-  {
-    "chunk_id": "06faf872-f2ea-4dd9-9917-4ea482ae8189",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "target size2.",
-    "metadata": {
-      "source": "data/sample.txt",
-      "chunk_number": 10,
-      "chunk_length": 13
-    }
-  },
-  {
-    "chunk_id": "d7723e5a-9a18-4385-82dd-daf22a5fbb6d",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "RecursiveCharacterTextSplitter.from_tiktoken_enco",
-    "metadata": {
-      "source": "data/sample.txt",
-      "chunk_number": 11,
-      "chunk_length": 49
-    }
-  },
-  {
-    "chunk_id": "5390c2fc-b80d-4864-b1a0-d8d7d9fa7e76",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "token_encoder()-",
-    "metadata": {
-      "source": "data/sample.txt",
-      "chunk_number": 12,
-      "chunk_length": 16
-    }
-  },
-  {
-    "chunk_id": "e2a07308-2421-475a-8812-4dea4aa6b0d9",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "Splits recursively until each chunk is **stricly",
-    "metadata": {
-      "source": "data/sample.txt",
-      "chunk_number": 13,
-      "chunk_length": 48
-    }
-  },
-  {
-    "chunk_id": "771b16c7-4cca-4209-b7dd-e585ebade9d0",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "**stricly below** the token limit- best when you",
-    "metadata": {
-      "source": "data/sample.txt",
-      "chunk_number": 14,
-      "chunk_length": 48
-    }
-  },
-  {
-    "chunk_id": "b53e5e5c-8e65-49b0-9197-72215eb6a8eb",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "when you need **hard** token constraints3.",
-    "metadata": {
-      "source": "data/sample.txt",
-      "chunk_number": 15,
-      "chunk_length": 42
-    }
-  },
-  {
-    "chunk_id": "e86cf087-c2bb-40d2-93c6-20d0f1e058e9",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "TokenTextSplitter- splits **directly by tokens**-",
-    "metadata": {
-      "source": "data/sample.txt",
-      "chunk_number": 16,
-      "chunk_length": 49
-    }
-  },
-  {
-    "chunk_id": "b2f2e893-0eb2-409e-ab0e-85d3a8e57249",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "tokens**- guarantee each chunk is **smaller**",
-    "metadata": {
-      "source": "data/sample.txt",
-      "chunk_number": 17,
-      "chunk_length": 45
-    }
-  },
-  {
-    "chunk_id": "992fc4d0-cbf5-4903-a9e3-744b62c3c6ab",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "than chunk_sizePre-chunking is the most common",
-    "metadata": {
-      "source": "data/sample.txt",
-      "chunk_number": 18,
-      "chunk_length": 46
-    }
-  },
-  {
-    "chunk_id": "fc043063-fb18-48e8-9742-119ea46d65ad",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "common method. It processes documents",
-    "metadata": {
-      "source": "data/sample.txt",
-      "chunk_number": 19,
-      "chunk_length": 37
-    }
-  },
-  {
-    "chunk_id": "bf84c2e3-ad5e-473b-90a7-9b08e9f39acb",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "documents asynchronously by breaking them into",
-    "metadata": {
-      "source": "data/sample.txt",
-      "chunk_number": 20,
-      "chunk_length": 46
-    }
-  },
-  {
-    "chunk_id": "de9e5047-3046-4be6-ab20-c71cb41518d7",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "them into smaller pieces before embedding and",
-    "metadata": {
-      "source": "data/sample.txt",
-      "chunk_number": 21,
-      "chunk_length": 45
-    }
-  },
-  {
-    "chunk_id": "ddf72248-d83c-44c0-9087-7403872cfb09",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "and storing them in the vector database⇒ fast",
-    "metadata": {
-      "source": "data/sample.txt",
-      "chunk_number": 22,
-      "chunk_length": 45
-    }
-  },
-  {
-    "chunk_id": "d8b37b6f-8b76-4bc1-b68d-295225e47777",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "fast retrieval at query time since all chunks are",
-    "metadata": {
-      "source": "data/sample.txt",
-      "chunk_number": 23,
-      "chunk_length": 49
-    }
-  },
-  {
-    "chunk_id": "747feb7a-941b-468f-a965-93a4f1a81dd8",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "are pre-computed and indexed.Post-chunking takes",
-    "metadata": {
-      "source": "data/sample.txt",
-      "chunk_number": 24,
-      "chunk_length": 48
-    }
-  },
-  {
-    "chunk_id": "952a8062-f674-417e-822c-f1332d1453c5",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "takes a different approach by embedding entire",
-    "metadata": {
-      "source": "data/sample.txt",
-      "chunk_number": 25,
-      "chunk_length": 46
-    }
-  },
-  {
-    "chunk_id": "63ddaeb9-4b82-4aa6-912d-ce5cc93503d1",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "entire documents first, then performing chunking",
-    "metadata": {
-      "source": "data/sample.txt",
-      "chunk_number": 26,
-      "chunk_length": 48
-    }
-  },
-  {
-    "chunk_id": "36c40f79-421d-4b0f-90c7-f237b1d85dcf",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "chunking at query time only on the documents that",
-    "metadata": {
-      "source": "data/sample.txt",
-      "chunk_number": 27,
-      "chunk_length": 49
-    }
-  },
-  {
-    "chunk_id": "993f65af-c0ec-4976-a8c2-8e965826b6f1",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "that are actually retrieved.The chunked results",
-    "metadata": {
-      "source": "data/sample.txt",
-      "chunk_number": 28,
-      "chunk_length": 47
-    }
-  },
-  {
-    "chunk_id": "2909f7a7-7300-4b70-a482-23f9b722d5ee",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "results can be cached, so the system becomes",
-    "metadata": {
-      "source": "data/sample.txt",
-      "chunk_number": 29,
-      "chunk_length": 44
-    }
-  },
-  {
-    "chunk_id": "92cefa7d-3c6b-4669-a94b-daa77e46dc3f",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "becomes faster over time as frequently accessed",
-    "metadata": {
-      "source": "data/sample.txt",
-      "chunk_number": 30,
-      "chunk_length": 47
-    }
-  },
-  {
-    "chunk_id": "0c95b409-5f34-4ded-a8e0-b73c86a57cf0",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "accessed documents build up cached chunks ⇒",
-    "metadata": {
-      "source": "data/sample.txt",
-      "chunk_number": 31,
-      "chunk_length": 43
-    }
-  },
-  {
-    "chunk_id": "413142ef-6ad9-4f64-b1a1-c4fe4d6c331b",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "chunks ⇒ avoids chunking documents that may never",
-    "metadata": {
-      "source": "data/sample.txt",
-      "chunk_number": 32,
-      "chunk_length": 49
-    }
-  },
-  {
-    "chunk_id": "e717d72d-d2d4-45e2-9e56-991d633aadb6",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "may never be queried while allowing for more",
-    "metadata": {
-      "source": "data/sample.txt",
-      "chunk_number": 33,
-      "chunk_length": 44
-    }
-  },
-  {
-    "chunk_id": "19d20058-bd9c-48f9-8af6-40593ffe2a26",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "for more dynamic, context-aware chunking",
-    "metadata": {
-      "source": "data/sample.txt",
-      "chunk_number": 34,
-      "chunk_length": 40
-    }
-  },
-  {
-    "chunk_id": "b91c4a64-c7c2-46b2-bc91-8c1594241e2e",
-    "document_id": "1926f36b-2224-4506-a999-26c4985e5cbe",
-    "text": "chunking strategies based on the specific query.",
-    "metadata": {
-      "source": "data/sample.txt",
-      "chunk_number": 35,
-      "chunk_length": 48
+      "source": "data/tenant_b_handbook.txt",
+      "chunk_number": 2,
+      "chunk_length": 286,
+      "tenant_id": "globex",
+      "acl_roles": [
+        "employee",
+        "manager"
+      ],
+      "doc_type": "hr_handbook"
     }
   }
 ]

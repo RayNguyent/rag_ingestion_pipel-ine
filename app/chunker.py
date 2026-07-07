@@ -7,33 +7,37 @@ def get_splitter(
     chunk_size: int = 1000,
     overlap: int = 100,
 ):
-    splitters = {
-        "character": CharacterTextSplitter.from_tiktoken_encoder(
-            encoding_name = "cl100k_base",
+    builders = {
+        "character": lambda: CharacterTextSplitter.from_tiktoken_encoder(
+            encoding_name="cl100k_base",
             chunk_size=chunk_size,
             chunk_overlap=overlap,
         ),
-        "recursive": RecursiveCharacterTextSplitter(
+        "recursive": lambda: RecursiveCharacterTextSplitter(
             chunk_size=chunk_size,
             chunk_overlap=overlap,
         ),
-        "token": TokenTextSplitter(
+        "token": lambda: TokenTextSplitter(
             chunk_size=chunk_size,
             chunk_overlap=overlap,
         ),
-        "recursive_token": RecursiveCharacterTextSplitter.from_tiktoken_encoder(
-            model_name = "gpt-4",
+        "recursive_token": lambda: RecursiveCharacterTextSplitter.from_tiktoken_encoder(
+            model_name="gpt-4",
             chunk_size=chunk_size,
             chunk_overlap=overlap,
         ),
     }
 
-    if splitter_name not in splitters:
+    if splitter_name not in builders:
         raise ValueError(
             f"Unsupported splitter: {splitter_name}"
         )
 
-    return splitters[splitter_name]
+    # Build only the requested splitter. Previously this dict was built
+    # eagerly, which meant every call constructed all four splitters
+    # (including two that fetch tiktoken vocab files over the network)
+    # regardless of which one was actually requested.
+    return builders[splitter_name]()
 
 def split_text(
     text: str,
