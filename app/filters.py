@@ -8,9 +8,9 @@ def matches_filters(metadata: dict, filters: dict[str, Any] | None) -> bool:
     of the hybrid retriever.
 
     Filter semantics:
-      - filters["tenant_id"] = "acme"          -> exact match required
-      - filters["doc_type"] = ["faq", "policy"] -> value must be in the list
-      - filters["acl_roles"] = ["viewer"]       -> caller's roles must overlap
+    - filters["tenant_id"] = "acme"          -> exact match required
+    - filters["doc_type"] = ["faq", "policy"] -> value must be in the list
+    - filters["acl_roles"] = ["viewer"]       -> caller's roles must overlap
         the chunk's acl_roles, OR the chunk is public (acl_roles contains "*")
     """
     if not filters:

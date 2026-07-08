@@ -12,7 +12,7 @@ from pathlib import Path
 
 from app.chunker import split_text
 from app.config import settings
-from app.embeddings.tfidf_embedder import TfidfLsaEmbedder
+from app.embeddings.sentence_transformer_embedder import SentenceTransformerEmbedder 
 from app.indexer import create_chunk_records, save_records
 from app.loader import load_txt
 from app.sparse.bm25_index import BM25Index
@@ -62,7 +62,7 @@ def build_index() -> None:
     metadatas = [r.metadata for r in all_records]
     document_ids = [r.document_id for r in all_records]
 
-    embedder = TfidfLsaEmbedder(dim=settings.embedding_dim)
+    embedder = SentenceTransformerEmbedder()
     embedder.fit(texts)
     vectors = embedder.embed(texts)
 

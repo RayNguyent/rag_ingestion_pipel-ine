@@ -9,7 +9,7 @@ from app.filters import matches_filters
 _TOKEN_RE = re.compile(r"[a-z0-9]+")
 
 
-def tokenize(text: str) -> list[str]:
+def tokenize(text: str) -> list[str]: # break down query or document text into tokens (words) for BM25 indexing and searching
     return _TOKEN_RE.findall(text.lower())
 
 
@@ -49,7 +49,7 @@ class BM25Index:
             return []
 
         allowed_scores = [(i, scores[i]) for i in allowed]
-        allowed_scores.sort(key=lambda x: x[1], reverse=True)
+        allowed_scores.sort(key=lambda x: x[1], reverse=True) # sort by score in descending order
         top = allowed_scores[:top_k]
         return [(self.ids[i], float(score)) for i, score in top]
 

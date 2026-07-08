@@ -1,5 +1,5 @@
 from app.config import settings
-from app.embeddings.tfidf_embedder import TfidfLsaEmbedder
+from app.embeddings.sentence_transformer_embedder import SentenceTransformerEmbedder
 from app.hybrid.retriever import HybridRetriever
 from app.rerank.reranker import LexicalOverlapReranker
 from app.retrieval.engine import ContextRetrievalEngine
@@ -11,7 +11,7 @@ def load_engine() -> ContextRetrievalEngine:
     """Loads the persisted index artifacts built by scripts/build_index.py
     and wires them into a ready-to-query ContextRetrievalEngine."""
 
-    embedder = TfidfLsaEmbedder(dim=settings.embedding_dim)
+    embedder = SentenceTransformerEmbedder()
     embedder.load("output/embedder.pkl")
 
     vector_store = NumpyVectorStore()

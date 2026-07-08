@@ -34,7 +34,7 @@ class NumpyVectorStore(VectorStore):
         document_ids: list[str],
     ) -> None:
         norms = np.linalg.norm(vectors, axis=1, keepdims=True)
-        norms[norms == 0] = 1.0
+        norms[norms == 0] = 1.0 # avoids division by zero for zero vectors
         vectors = vectors / norms
 
         for i, chunk_id in enumerate(ids):
@@ -62,8 +62,8 @@ class NumpyVectorStore(VectorStore):
         top_k: int,
         filters: dict[str, Any] | None = None,
     ) -> list[tuple[str, float]]:
-        if self.vectors is None or len(self.ids) == 0:
-            return []
+        if self.vectors is None or len(self.ids) == 0: # no vector - no result
+            return [] 
 
         # 1. Apply metadata/tenant/ACL filters FIRST, before any truncation.
         allowed_rows = [
@@ -72,7 +72,7 @@ class NumpyVectorStore(VectorStore):
         if not allowed_rows:
             return []
 
-        qv = query_vector / (np.linalg.norm(query_vector) or 1.0)
+        qv = query_vector / (np.linalg.norm(query_vector) or 1.0) # normalize query vector to unit length (avoid division by zero)
         candidate_vectors = self.vectors[allowed_rows]
         scores = candidate_vectors @ qv  # cosine similarity (vectors are normalized)
 

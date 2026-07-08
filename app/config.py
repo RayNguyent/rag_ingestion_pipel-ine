@@ -6,7 +6,7 @@ class Settings(BaseSettings):
 
     # Embeddings
     embedding_dim: int = 128
-    embedder_backend: str = "tfidf_lsa"  # swap to "sentence_transformers" / "openai" later
+    embedder_backend: str = "sentence_transformers"  # swap to "sentence_transformers" / "openai" later
 
     # Vector store
     vector_store_path: str = "output/vector_store"
