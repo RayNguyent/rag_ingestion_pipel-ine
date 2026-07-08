@@ -1,8 +1,13 @@
+from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    model_config = SettingsConfigDict(env_prefix="RAG_")
+    model_config = SettingsConfigDict(
+        env_prefix="RAG_",
+        env_file=".env",
+        env_file_encoding="utf-8",
+        extra = "ignore")
 
     # Embeddings
     embedding_dim: int = 128
@@ -26,6 +31,13 @@ class Settings(BaseSettings):
 
     # Access control
     enforce_tenant_isolation: bool = True
+    
+    # Generation (LLM + Prompt)
+    llm_backend = str = "anthropic"
+    llm_model = str = "claude-sonnet-5"
+    llm_max_tokens: int = 1024
+    max_context_chars: int = 6000
+    anthropic_api_key: str | None = Field (default=None, validation_alias="ANTHROPIC_API_KEY")
 
 
 settings = Settings()

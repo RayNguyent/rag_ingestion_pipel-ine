@@ -38,3 +38,11 @@ class SearchResult(BaseModel):
     sparse_score: float | None = None
     fused_score: float | None = None
     rerank_score: float | None = None
+    
+class AnswerResult(BaseModel):
+    """
+    Final output of the generation layer: the LLM's answer plus the exact sources it was grounded on, so callers can show citations
+    """
+    query: str
+    answer: str
+    source: list[SearchResult]
