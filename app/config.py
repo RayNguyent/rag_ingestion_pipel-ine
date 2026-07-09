@@ -33,8 +33,8 @@ class Settings(BaseSettings):
     enforce_tenant_isolation: bool = True
     
     # Generation (LLM + Prompt)
-    llm_backend = str = "anthropic"
-    llm_model = str = "claude-sonnet-5"
+    llm_backend: str = "anthropic"
+    llm_model: str = "claude-sonnet-5"
     llm_max_tokens: int = 1024
     max_context_chars: int = 6000
     anthropic_api_key: str | None = Field (default=None, validation_alias="ANTHROPIC_API_KEY")

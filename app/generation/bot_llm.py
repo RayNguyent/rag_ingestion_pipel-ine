@@ -11,7 +11,7 @@ class StubLLMClient(LLMClient):
     Offline default: not network call, no API key required. It doesn NOT synthesize answers - it returns the top retrieved passage.
     """
     def generate(self, system_prompt: str, user_prompt: str) -> str:
-        match = re.search(r"\[1\][^\n]*\n(.*?)(?=\n\n[2\]|\n\nQuestion:)", user_prompt, re.S)
+        match = re.search(r"\[1\][^\n]*\n(.*?)(?=\n\n\[2\]|\n\nQuestion:)", user_prompt, re.S)
         snippet = match.group(1).strip() if match else "no context retrieved"
         return (
             f"{snippet} [1]\n\n"

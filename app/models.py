@@ -45,4 +45,4 @@ class AnswerResult(BaseModel):
     """
     query: str
     answer: str
-    source: list[SearchResult]
+    sources: list[SearchResult]

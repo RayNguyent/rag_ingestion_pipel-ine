@@ -14,6 +14,7 @@ class RAGAnswerEngine:
         self.llm_client = llm_client
         
     def answer(
+        self,
         query: str,
         tenant_context: TenantContext,
         filters: dict[str, Any]| None =  None,

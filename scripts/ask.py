@@ -9,18 +9,18 @@ def main() -> None:
         
     query = sys.argv[1]
     tenant_id = sys.argv[2]
-    roles = sys.argv[3].split(",") if len(sys.arg) > 3 else ["*"]
+    roles = sys.argv[3].split(",") if len(sys.argv) > 3 else ["*"]
     
     engine = load_answer_engine()
     ctx = TenantContext(tenant_id = tenant_id, user_id="cli-user", roles = roles)
     
-    result = user.answer(query, ctx, top_k = 3)
+    result = engine.answer(query, ctx, top_k = 3)
     
     print(f"\nQ: {result.query}\n")
-    print(f"A: {results.answer}\n")
+    print(f"A: {result.answer}\n")
     print("Sources:")
-    for i, s in enumerate(resuts.sources, start = 1):
+    for i, s in enumerate(result.sources, start = 1):
         print(f" [{i}] tenant={s.metadata['tenant_id']} source={s.metadata.get('source')} {s.text[:80]}...")
-        
-    if __name_ == "__main__":
-        main()
+
+if __name__ == "__main__":
+    main()

@@ -1,4 +1,4 @@
-from app.generation.llm import StubLLMClient
+from app.generation.bot_llm import StubLLMClient
 from app.generation.pipeline import RAGAnswerEngine
 from app.generation.prompt import build_rag_prompt
 from app.models import SearchResult, TenantContext

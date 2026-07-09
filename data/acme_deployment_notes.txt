@@ -1,0 +1,5 @@
+Deployment rollbacks should always be tested in staging before touching production.
+
+Canary releases reduce blast radius when a new model version underperforms.
+
+On-call engineers must confirm p95 latency stays under 300ms after any registry change.
