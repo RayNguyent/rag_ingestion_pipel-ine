@@ -10,6 +10,8 @@ class ToolMetrics:
     calls_total: int = 0
     denials_total: int = 0
     errors_total: int = 0
+    retries_total: int = 0
+    timeouts_total: int = 0
     latency_ms: list[float] = field(default_factory=list)
 
     def p50(self) -> float:
@@ -48,6 +50,8 @@ class Metrics:
         ok: bool,
         denied: bool,
         duration_ms: float,
+        retries: int = 0,
+        timed_out: bool = False,
     ) -> None:
         bucket = self._by_tool.setdefault(tool_name, ToolMetrics())
         bucket.calls_total += 1
@@ -55,6 +59,9 @@ class Metrics:
             bucket.denials_total += 1
         elif not ok:
             bucket.errors_total += 1
+        bucket.retries_total += retries
+        if timed_out:
+            bucket.timeouts_total += 1
         bucket.latency_ms.append(duration_ms)
 
         logger.info(
@@ -67,6 +74,8 @@ class Metrics:
                     "scope": scope,
                     "ok": ok,
                     "denied": denied,
+                    "retries": retries,
+                    "timed_out": timed_out,
                     "duration_ms": round(duration_ms, 2),
                 }
             )
@@ -78,6 +87,8 @@ class Metrics:
                 "calls_total": m.calls_total,
                 "denials_total": m.denials_total,
                 "errors_total": m.errors_total,
+                "retries_total": m.retries_total,
+                "timeouts_total": m.timeouts_total,
                 "p50_latency_ms": round(m.p50(), 2),
                 "p95_latency_ms": round(m.p95(), 2),
             }

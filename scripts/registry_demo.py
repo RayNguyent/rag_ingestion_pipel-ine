@@ -21,6 +21,7 @@ from app.models import TenantContext
 from app.registry import (
     CallerContext,
     PermissionDeniedError,
+    guarded_execute,
     metrics,
     monitored_execute,
     registry,
@@ -82,6 +83,35 @@ def main() -> None:
     )
     for r in result.results:
         print(f"  score={r.rerank_score:.3f}  {r.text[:70]}...")
+
+    print("\n--- guarded_execute against the REAL 'retrieve' tool: malformed JSON ---")
+    block = guarded_execute(
+        "retrieve",
+        '{"query": "revenue",}',  # trailing comma — a model actually does this
+        reader,
+        tool_use_id="demo_malformed",
+    )
+    print(f"  is_error={block.get('is_error', False)}: {block['content'][:160]}")
+
+    print("\n--- guarded_execute against the REAL 'retrieve' tool: missing required field ---")
+    block = guarded_execute(
+        "retrieve",
+        '{"top_k": 3}',  # missing "query" and "tenant_context"
+        reader,
+        tool_use_id="demo_schema",
+    )
+    print(f"  is_error={block.get('is_error', False)}: {block['content'][:200]}")
+
+    print("\n--- guarded_execute against the REAL 'retrieve' tool: valid call, with retry/timeout budget ---")
+    block = guarded_execute(
+        "retrieve",
+        json.dumps({"query": "canary release rollback", "tenant_context": acme_tenant.model_dump(), "top_k": 3}),
+        reader,
+        tool_use_id="demo_valid",
+        max_attempts=3,
+        timeout_s=15.0,
+    )
+    print(f"  is_error={block.get('is_error', False)}: {block['content'][:160]}")
 
     print("\n--- monitoring summary (calls_total / denials_total / p95 latency per tool) ---")
     print(json.dumps(metrics.summary(), indent=2))
